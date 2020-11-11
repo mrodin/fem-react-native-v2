@@ -1,21 +1,60 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {FC} from "react";
+import {
+    View,
+    Text,
+    SafeAreaView,
+    FlatList,
+    StyleSheet,
+} from "react-native";
+import {NavigationContainer} from "@react-navigation/native";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+import ColorBox from "./components/ColorBox";
+
+const COLORS = [
+    { colorName: 'Base03', hexCode: '#002b36' },
+    { colorName: 'Base02', hexCode: '#073642' },
+    { colorName: 'Base01', hexCode: '#586e75' },
+    { colorName: 'Base00', hexCode: '#657b83' },
+    { colorName: 'Base0', hexCode: '#839496' },
+    { colorName: 'Base1', hexCode: '#93a1a1' },
+    { colorName: 'Base2', hexCode: '#eee8d5' },
+    { colorName: 'Base3', hexCode: '#fdf6e3' },
+    { colorName: 'Yellow', hexCode: '#b58900' },
+    { colorName: 'Orange', hexCode: '#cb4b16' },
+    { colorName: 'Red', hexCode: '#dc322f' },
+    { colorName: 'Magenta', hexCode: '#d33682' },
+    { colorName: 'Violet', hexCode: '#6c71c4' },
+    { colorName: 'Blue', hexCode: '#268bd2' },
+    { colorName: 'Cyan', hexCode: '#2aa198' },
+    { colorName: 'Green', hexCode: '#859900' },
+];
+
+const App: FC = () => {
+    return (
+        <NavigationContainer>
+            <SafeAreaView>
+                <FlatList
+                    style={styles.container}
+                    data={COLORS}
+                    keyExtractor={item => item.colorName}
+                    renderItem={({item}) => <ColorBox colorName={item.colorName} colorHex={item.hexCode} />}
+                    ListHeaderComponent={<Text style={styles.text}>Solarized</Text>}
+                />
+            </SafeAreaView>
+        </NavigationContainer>
+    );
+};
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    container: {
+        paddingHorizontal: 10,
+        paddingTop: 40,
+    },
+    text: {
+        fontSize: 18,
+        fontWeight: "bold",
+        marginBottom: 10,
+    },
 });
+
+export default App;
