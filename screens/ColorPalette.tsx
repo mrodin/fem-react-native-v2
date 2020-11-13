@@ -7,9 +7,9 @@ import {
 import {RouteProp} from "@react-navigation/native";
 
 import ColorBox from "../components/ColorBox";
-import {RootStackParamList} from "../App";
+import {MainStackParamList} from "../App";
 
-type ColorPaletteScreenRouteProp = RouteProp<RootStackParamList, "ColorPalette">;
+type ColorPaletteScreenRouteProp = RouteProp<MainStackParamList, "ColorPalette">;
 
 interface ColorPaletteProps {
     route: ColorPaletteScreenRouteProp;
